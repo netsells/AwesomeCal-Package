@@ -1,0 +1,18 @@
+{
+    "name": "netsells/calendar",
+    "description": "A wrapper for the Netsells Calendar server",
+    "authors": [
+        {
+            "name": "Craig Sansam",
+            "email": "craig@netsells.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Netsells\\Calendar\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.1"
+    }
+}
