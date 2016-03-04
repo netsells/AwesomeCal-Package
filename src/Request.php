@@ -28,6 +28,11 @@ class Request
         return $this->request($url, $options, 'PUT');
     }
 
+    public function post($url, $options = [])
+    {
+        return $this->request($url, $options, 'POST');
+    }
+
     public function delete($url, $options = [])
     {
         return $this->request($url, $options, 'DELETE');

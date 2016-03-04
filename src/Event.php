@@ -29,10 +29,21 @@ class Event
         ]);
 
         $this->eventId = json_decode($request->getBody()->getContents())->data->id;
+
+        return $this;
     }
 
-    public function update($eventId, $data)
+    public function update($data)
     {
+        $request = $this->request->post("calendars/{$this->calendarId}/events/{$this->eventId}", [
+            'auth' => true,
+            'body' => $data->toArray(),
+        ]);
+
+        $this->eventId = json_decode($request->getBody()->getContents())->data->id;
+
+        return $this;
+
     }
 
     public function delete()

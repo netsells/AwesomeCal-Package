@@ -5,6 +5,7 @@ namespace Netsells\Calendar;
 class Account
 {
     protected $request;
+    public $calendars;
 
     public function __construct()
     {
@@ -24,6 +25,8 @@ class Account
             ->getBody()
             ->getContents();
 
-        return json_decode($response)->data;
+        $this->calendars = json_decode($response)->data;
+
+        return $this;
     }
 }
