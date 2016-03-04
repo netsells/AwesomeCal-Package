@@ -4,21 +4,20 @@ namespace Netsells\Calendar;
 
 class Calendar
 {
-    protected $request;
+    private $request;
     protected $id;
     protected $download = '';
 
     public function __construct($id = null)
     {
         $this->request = new Request();
+        $this->id = $id;
 
-        if ($id !== null) {
-            $this->id = $id;
-            $this->get();
-        } else {
+        if ($this->id === null) {
             $this->create();
-            $this->get();
         }
+
+        $this->get();
     }
 
     public function getId()
@@ -31,7 +30,7 @@ class Calendar
         return $this->download;
     }
 
-    public function create()
+    protected function create()
     {
         $response = $this->request->put('calendars', [
             'auth' => true,

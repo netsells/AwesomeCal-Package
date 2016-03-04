@@ -35,14 +35,16 @@ class Request
 
     protected function request($url, $options = [], $method = "GET")
     {
-        $headers = [];
+        $requestOptions = [];
 
         if (isset($options['auth']) and $options['auth'] === true) {
-            $headers['Authorization'] = $this->god->getAccountId();
+            $requestOptions['headers']['Authorization'] = $this->god->getAccountId();
         }
 
-        return $this->httpClient->request($method, $url, [
-            'headers' => $headers,
-        ]);
+        if (isset($options['body'])) {
+            $requestOptions['json'] = $options['body'];
+        }
+
+        return $this->httpClient->request($method, $url, $requestOptions);
     }
 }
