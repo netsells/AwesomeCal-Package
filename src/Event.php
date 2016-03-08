@@ -66,4 +66,9 @@ class Event
             throw $e;
         }
     }
+
+    public function getEventId()
+    {
+      return $this->eventId;
+    }
 }
