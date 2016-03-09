@@ -9,6 +9,7 @@ class EventObject
     protected $summary;
     protected $location;
     protected $no_time = false;
+    protected $repeat = [];
 
     public function __set($property, $value)
     {
@@ -22,7 +23,13 @@ class EventObject
         $array = [];
 
         foreach(get_object_vars($this) as $property => $value) {
-            $array[$property] =  $value;
+            if (is_array($value)) {
+                foreach ($value as $subProperty => $subValue) {
+                    $array["{$property}.{$subProperty}"] = $subValue;
+                }
+            } else {
+                $array[$property] =  $value;
+            }
         }
 
         return $array;
